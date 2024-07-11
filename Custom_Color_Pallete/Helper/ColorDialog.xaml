@@ -1,0 +1,105 @@
+﻿<Window x:Class="Custom_Color_Pallete.Helper.ColorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:Custom_Color_Pallete.Helper"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Loaded="Window_Loaded_1"
+        mc:Ignorable="d"  Height="472" Width="400">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TabControl x:Name="tabcontrolColorPallete" TabStripPlacement="Bottom"
+                    Grid.ColumnSpan="2" Margin="0 0 0 10" Background="AliceBlue">
+            <TabItem Header="Default" Padding="5" FontWeight="SemiBold">
+                <ListBox x:Name="colorList" Grid.ColumnSpan="2" 
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 SelectionChanged="colorList_SelectionChanged">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Rectangle Fill="{Binding Name}" Width="20" Height="20" Stroke="#FF211E1E" OpacityMask="Black" StrokeThickness="1" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </TabItem>
+            <TabItem Header="Advance" Padding="5" FontWeight="SemiBold" >
+                <Grid>
+                    <Border x:Name="advanceColorPallleteBG" Background="Aquamarine" Panel.ZIndex="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="1"/>
+                    <Border CornerRadius="280" Height="280" Width="280" Panel.ZIndex="2" BorderThickness="4" BorderBrush="#aaa9ad">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="50" ShadowDepth="1"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Image Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+                                        Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+                                        Source="/Helper/AdvanceColorPallete.png"
+                                        MouseLeftButtonDown="Image_MouseLeftButtonDown" MouseMove="Image_MouseMove" MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
+                            <!--<Rectangle x:Name="rect" Width="5" Height="5" RadiusX="5" RadiusY="5" Stroke="Black" />-->
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="ARGB" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox x:Name="textBoxA" Grid.Column="1" Margin="2" Width="50" LostFocus="ARGB_PreviewTextInput" HorizontalAlignment="Left"/>
+            <TextBox x:Name="textBoxR" Grid.Column="2" Margin="2" Width="50" LostFocus="ARGB_PreviewTextInput" HorizontalAlignment="Left"/>
+            <TextBox x:Name="textBoxG" Grid.Column="3" Margin="2" Width="50" LostFocus="ARGB_PreviewTextInput" HorizontalAlignment="Left"/>
+            <TextBox x:Name="textBoxB" Grid.Column="4" Margin="2" Width="50" LostFocus="ARGB_PreviewTextInput" HorizontalAlignment="Left"/>
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Hex" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox x:Name="hexColor" Grid.Column="1" Grid.ColumnSpan="2" Margin="2" Width="100" LostFocus="HEX_Color_PreviewTextInput" HorizontalAlignment="Left"/>
+        </Grid>
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Preview" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="19,0,0,0"/>
+            <Rectangle x:Name="previewColor" Fill="{Binding Name}" Grid.Column="2" Margin="2" Width="40" Height="20" Stroke="Gray" OpacityMask="Black" StrokeThickness="1" HorizontalAlignment="Left"/>
+            <Slider x:Name="colorAlpha" Grid.Column="3" Grid.ColumnSpan="3"  Margin="5 2" Minimum="0" Maximum="255" TickFrequency="1" ValueChanged="colorAlpha_ValueChanged"/>
+        </Grid>
+        <Button Grid.Row="4" Grid.Column="0" Margin="5" Width="100" Content="Ok" Click="Ok_Click"/>
+        <Button Grid.Row="4" Grid.Column="1" Margin="5" Width="100" Content="Cancel" Click="Cancel_Click"/>
+    </Grid>
+</Window>

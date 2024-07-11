@@ -1,0 +1,15 @@
+﻿<Window x:Class="Custom_Color_Pallete.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Custom_Color_Pallete" xmlns:helper="clr-namespace:Custom_Color_Pallete.Helper"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing"
+        Title="Color Pallete" Width="100" Height="200">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Click Below..."/>
+            <Button x:Name="btnColor" BorderBrush="LightGray" Width="50" Height="50" Click="btnColor_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>
